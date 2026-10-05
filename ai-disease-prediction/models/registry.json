@@ -1,0 +1,14 @@
+[
+  {
+    "version": "20261003-065400",
+    "model": "SVM (RBF)",
+    "trained_at": "2026-10-03T06:54:00+00:00",
+    "file": "versions/disease_model_20261003-065400.joblib",
+    "test_accuracy": 0.9629629629629629,
+    "test_f1_macro": 0.9641487498416668,
+    "n_classes": 10,
+    "n_symptoms": 34,
+    "dataset_is_synthetic": true,
+    "sklearn_version": "1.8.0"
+  }
+]

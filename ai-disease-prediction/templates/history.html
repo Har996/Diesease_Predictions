@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}History · AI Disease Prediction System{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+  <div>
+    <h1 class="h2 mb-1">Prediction history</h1>
+    <p class="text-muted-ink mb-0">{% if current_user %}Saved to your account.{% else %}Saved in this browser only. <a href="{{ url_for('register') }}">Create an account</a> to keep it across devices.{% endif %}</p>
+  </div>
+  {% if records %}
+  <form method="post" action="{{ url_for('clear_history') }}" onsubmit="return confirm('Delete all saved predictions?');">
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <button class="btn btn-outline-danger btn-sm" type="submit">Delete all</button>
+  </form>
+  {% endif %}
+</div>
+
+{% if records %}
+<div class="table-responsive">
+  <table class="table align-middle data-table">
+    <thead><tr><th>Date (UTC)</th><th>Closest match</th><th>Estimate</th><th>Symptoms</th><th></th></tr></thead>
+    <tbody>
+    {% for r in records %}
+      <tr>
+        <td class="text-nowrap">{{ r.created_at.replace('T',' ') }}</td>
+        <td>{{ r.prediction }}</td>
+        <td>{{ (r.confidence*100)|round(1) }}%</td>
+        <td>{{ r.symptoms|length }}: {{ r.symptoms[:4]|map('replace','_',' ')|join(', ') }}{{ '…' if r.symptoms|length > 4 }}</td>
+        <td class="text-end"><a href="{{ url_for('result_page', pred_id=r.id) }}">Open</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty">
+  <p class="mb-3">No predictions saved yet.</p>
+  <a class="btn btn-primary" href="{{ url_for('predict_page') }}">Start a prediction</a>
+</div>
+{% endif %}
+{% endblock %}

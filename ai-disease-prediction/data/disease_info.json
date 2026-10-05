@@ -1,0 +1,62 @@
+{
+  "Common Cold": {
+    "summary": "A mild viral infection of the nose and throat. Most people recover on their own within about a week to ten days.",
+    "typical_features": ["Runny or blocked nose", "Sneezing", "Sore throat", "Mild cough"],
+    "seek_care": ["Difficulty breathing or wheezing", "A high fever that does not settle", "Symptoms lasting longer than about 10 days or getting worse", "Symptoms in a young infant, an older adult or someone with a long-term condition"],
+    "general_notes": ["Rest and fluids are generally encouraged.", "Washing hands often reduces the spread of colds."]
+  },
+  "Influenza": {
+    "summary": "A contagious respiratory illness caused by influenza viruses. It tends to start suddenly with fever and body aches, and can lead to serious complications in some people.",
+    "typical_features": ["Sudden fever and chills", "Muscle aches", "Marked tiredness", "Dry cough", "Headache"],
+    "seek_care": ["Trouble breathing or chest pain", "Confusion or severe drowsiness", "Vomiting that will not stop", "Getting better and then suddenly worse"],
+    "general_notes": ["Yearly influenza vaccination is the main preventive measure.", "Staying home while unwell helps protect others."]
+  },
+  "Allergic Rhinitis": {
+    "summary": "Inflammation of the lining of the nose triggered by allergens such as pollen, dust mites or pet dander.",
+    "typical_features": ["Repeated sneezing", "Itchy eyes, nose or throat", "Runny or blocked nose", "Usually no fever"],
+    "seek_care": ["Wheezing or shortness of breath", "Symptoms that disturb sleep or daily life", "Uncertainty about what is triggering the symptoms"],
+    "general_notes": ["Identifying and reducing contact with triggers is a key step.", "A clinician can help confirm the cause."]
+  },
+  "Migraine": {
+    "summary": "A neurological condition causing recurring headaches, often on one side of the head, frequently with nausea and sensitivity to light or sound.",
+    "typical_features": ["Throbbing or pulsating headache", "Nausea or vomiting", "Sensitivity to light and sound", "Sometimes visual disturbances beforehand"],
+    "seek_care": ["A sudden, extremely severe headache unlike any before", "Headache with weakness, numbness, vision loss or difficulty speaking", "Headache with fever and a stiff neck", "Headache after a head injury"],
+    "general_notes": ["Keeping a headache diary can help identify patterns and triggers.", "Regular sleep, meals and hydration are commonly discussed with clinicians."]
+  },
+  "Gastroenteritis": {
+    "summary": "Inflammation of the stomach and intestines, usually caused by a viral or bacterial infection or by contaminated food or water.",
+    "typical_features": ["Diarrhoea", "Vomiting", "Stomach cramps", "Low-grade fever"],
+    "seek_care": ["Signs of dehydration: very dry mouth, little urine, dizziness", "Blood in stool or vomit", "High fever or symptoms lasting more than a few days", "Illness in infants, older adults or pregnant women"],
+    "general_notes": ["Keeping up fluid intake is important.", "Hand washing and safe food handling reduce the risk of infection."]
+  },
+  "Urinary Tract Infection": {
+    "summary": "An infection of part of the urinary system, most often the bladder.",
+    "typical_features": ["Burning or pain when passing urine", "Frequent urge to urinate", "Lower abdominal discomfort", "Cloudy or strong-smelling urine"],
+    "seek_care": ["Fever, chills or pain in the back or side", "Blood in the urine", "Symptoms during pregnancy or in children and men", "Symptoms that return often"],
+    "general_notes": ["A clinician can confirm the cause, usually with a simple urine test.", "Staying hydrated is generally encouraged."]
+  },
+  "Pneumonia": {
+    "summary": "An infection that inflames the air sacs in one or both lungs. It can range from mild to life-threatening.",
+    "typical_features": ["Cough, sometimes with phlegm", "Fever and chills", "Shortness of breath", "Chest pain when breathing or coughing"],
+    "seek_care": ["Any difficulty breathing", "Chest pain", "Confusion or bluish lips", "Symptoms in infants, older adults or people with chronic illness"],
+    "general_notes": ["Pneumonia needs medical assessment; it should not be self-managed.", "Vaccination, not smoking and good hand hygiene lower the risk."]
+  },
+  "Dengue": {
+    "summary": "A mosquito-borne viral infection found in tropical and subtropical regions.",
+    "typical_features": ["High fever", "Severe headache and pain behind the eyes", "Muscle and joint pain", "Skin rash"],
+    "seek_care": ["Severe stomach pain or persistent vomiting", "Bleeding from the nose or gums, or blood in vomit or stool", "Extreme tiredness or restlessness", "Worsening symptoms around the time the fever falls"],
+    "general_notes": ["Ask a clinician before taking any medicine for suspected dengue.", "Avoiding mosquito bites and removing standing water helps prevent spread."]
+  },
+  "Typhoid": {
+    "summary": "A bacterial infection (Salmonella Typhi) spread through contaminated food or water.",
+    "typical_features": ["Prolonged high fever", "Abdominal pain", "Weakness and loss of appetite", "Constipation or diarrhoea"],
+    "seek_care": ["Any suspected case should be assessed by a clinician and tested", "Severe abdominal pain, confusion or bleeding needs urgent care"],
+    "general_notes": ["Safe drinking water, careful food hygiene and hand washing reduce risk.", "Vaccines exist and are recommended in some regions."]
+  },
+  "Asthma": {
+    "summary": "A long-term condition in which the airways become inflamed and narrow, making breathing difficult at times.",
+    "typical_features": ["Wheezing", "Shortness of breath", "Chest tightness", "Cough, often worse at night or with exercise"],
+    "seek_care": ["Severe breathlessness or difficulty speaking in full sentences", "Blue lips or fingertips", "Symptoms that do not improve with the plan agreed with your clinician"],
+    "general_notes": ["People with asthma usually work with a clinician on a written action plan.", "Identifying personal triggers can help."]
+  }
+}

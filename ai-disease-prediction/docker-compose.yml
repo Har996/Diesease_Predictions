@@ -1,0 +1,20 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Required: a long random string, e.g.  python -c "import secrets; print(secrets.token_hex(32))"
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY (see .env.example)}
+      # Optional: restrict /dashboard to one administrator account (created automatically at start-up).
+      DASHBOARD_REQUIRE_ADMIN: ${DASHBOARD_REQUIRE_ADMIN:-0}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      # Set to 1 only when served over HTTPS.
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-0}
+    volumes:
+      - app-data:/app/instance
+    restart: unless-stopped
+
+volumes:
+  app-data:

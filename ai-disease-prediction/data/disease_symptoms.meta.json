@@ -1,0 +1,7 @@
+{
+  "synthetic": true,
+  "sha256": "884dbbf5d981ec4f7953af85b98ffbf152c890a07243e1893fc12a031aac349e",
+  "rows": 4000,
+  "seed": 42,
+  "note": "Invented demonstration data. NOT clinical data. Replace with a real public dataset."
+}

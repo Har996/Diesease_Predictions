@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prediction report #{{ r.id }}</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:760px;margin:2rem auto;padding:0 1rem;color:#1D1A3B;line-height:1.55}
+  h1{margin-bottom:.2rem} .warn{background:#FFF3D1;border:1px solid #E3B341;padding:.8rem 1rem;border-radius:8px}
+  table{border-collapse:collapse;width:100%} td,th{border-bottom:1px solid #D9D7E8;padding:.4rem .5rem;text-align:left}
+  .muted{color:#5A5778;font-size:.9rem}
+</style></head><body>
+<h1>Disease prediction report</h1>
+<p class="muted">Report #{{ r.id }} · generated {{ r.created_at }} UTC · model version {{ r.model_version }}</p>
+<p class="warn"><strong>Not a medical diagnosis.</strong> This report was produced by an educational machine-learning demo. Predictions are statistical estimates and must not be used for medical decisions. Please consult a qualified healthcare professional.</p>
+{% if r.synthetic %}<p class="warn">The model behind this report was trained on <strong>synthetic demo data</strong>.</p>{% endif %}
+
+<h2>Closest match: {{ r.prediction }}</h2>
+<p>Model estimate: <strong>{{ (r.confidence*100)|round(1) }}%</strong> (a probability produced by the model, not the chance you have this condition).</p>
+
+<h2>Input</h2>
+<p>Symptoms: {{ r.symptoms|map('replace','_',' ')|join(', ') }}</p>
+{% if r.age is not none %}<p>Age: {{ r.age|int }}</p>{% endif %}{% if r.gender %}<p>Gender: {{ r.gender|capitalize }}</p>{% endif %}
+
+<h2>Other possibilities</h2>
+<table><tr><th>Condition</th><th>Model estimate</th></tr>
+{% for t in r.top_predictions %}<tr><td>{{ t.disease }}</td><td>{{ (t.probability*100)|round(1) }}%</td></tr>{% endfor %}</table>
+
+<h2>About {{ r.prediction }} (general information)</h2>
+<p>{{ info.summary }}</p>
+<p><strong>Seek medical care promptly if:</strong></p>
+<ul>{% for f in info.seek_care %}<li>{{ f }}</li>{% endfor %}</ul>
+
+<p class="warn"><strong>Next step:</strong> discuss your symptoms with a qualified healthcare professional. This report does not recommend any medicine or treatment.</p>
+</body></html>

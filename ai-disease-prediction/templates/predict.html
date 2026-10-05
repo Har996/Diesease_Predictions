@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Select symptoms · AI Disease Prediction System{% endblock %}
+{% block content %}
+<h1 class="h2">Which symptoms do you have?</h1>
+<p class="text-muted-ink mb-4">Search, then tick every symptom that applies. This is an educational tool, not a diagnosis.</p>
+
+{% if not predictor %}
+  <div class="alert alert-warning" role="alert"><strong>No trained model found.</strong> Run <code>python -m src.train</code>, then reload this page.</div>
+{% else %}
+<form id="predict-form" method="post" action="{{ url_for('predict') }}" novalidate>
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <label for="symptom-search" class="form-label fw-semibold">Search symptoms</label>
+      <input id="symptom-search" type="search" class="form-control form-control-lg" placeholder="e.g. cough, headache" autocomplete="off">
+      <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+        <span id="symptom-count" class="small text-muted-ink" aria-live="polite">0 selected</span>
+        <button type="button" id="symptom-clear" class="btn btn-link btn-sm p-0">Clear selection</button>
+      </div>
+      <fieldset>
+        <legend class="visually-hidden">Symptoms</legend>
+        <div id="symptom-list" class="symptom-grid">
+          {% for o in predictor.symptom_options %}
+          <label class="symptom" data-label="{{ o.label|lower }}">
+            <input type="checkbox" name="symptoms" value="{{ o.value }}" {{ 'checked' if selected and o.value in selected }}>
+            <span>{{ o.label }}</span>
+          </label>
+          {% endfor %}
+        </div>
+        <p id="symptom-empty" class="text-muted-ink mt-3" hidden>No symptom matches your search.</p>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="side-panel">
+        <h2 class="h6">Your selection</h2>
+        <div id="selected-chips" class="chips" aria-live="polite"><span class="text-muted-ink small">Nothing selected yet.</span></div>
+
+        {% if predictor.uses_age or predictor.uses_gender %}
+        <hr>
+        <h2 class="h6">Optional details</h2>
+        {% endif %}
+        {% if predictor.uses_age %}
+        <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input id="age" name="age" type="number" min="0" max="120" step="1" inputmode="numeric" class="form-control" value="{{ form.age if form else '' }}">
+        </div>
+        {% endif %}
+        {% if predictor.uses_gender %}
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select id="gender" name="gender" class="form-select">
+            <option value="">Prefer not to say</option>
+            {% for g in ['female','male','other'] %}
+            <option value="{{ g }}" {{ 'selected' if form and form.gender == g }}>{{ g|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        <div id="form-error" class="alert alert-danger py-2 small" role="alert" hidden></div>
+        <button id="predict-btn" type="submit" class="btn btn-primary w-100 btn-lg">Predict</button>
+        <p class="small text-muted-ink mt-3 mb-0">Results are saved to your prediction history{% if not current_user %} on this device{% endif %}. You can delete them at any time.</p>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div id="loading" class="loading-overlay" hidden role="status" aria-live="polite">
+  <div class="loading-box">
+    <div class="pulse-loader" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p class="mb-0">Running the model…</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

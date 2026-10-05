@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>AI Disease Prediction System</h1>
+  <p class="lead">Pick the symptoms you are experiencing. A machine-learning model compares them with its training data and estimates which
+    {% if predictor %}of {{ predictor.classes|length }} conditions{% else %}condition{% endif %} they most resemble.</p>
+  <svg class="ecg" viewBox="0 0 600 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 H150 l12 -6 l12 6 H220 l10 6 l14 -38 l16 62 l12 -30 H330 l14 -12 l14 12 H600" pathLength="1"/>
+  </svg>
+  <div class="d-flex flex-wrap gap-2 align-items-center">
+    <a class="btn btn-primary btn-lg" href="{{ url_for('predict_page') }}">Start Prediction</a>
+    <a class="btn btn-link" href="{{ url_for('dashboard') }}">See how the model performs</a>
+  </div>
+</section>
+
+{% if not predictor %}
+<div class="alert alert-warning mt-4" role="alert">
+  <strong>No trained model found.</strong> Run <code>python -m src.train</code> in the project folder, then reload this page.
+</div>
+{% endif %}
+
+<section class="notice mt-5" aria-labelledby="disc-title">
+  <h2 id="disc-title" class="h5">Medical disclaimer</h2>
+  <p class="mb-2">This is an <strong>educational demonstration project</strong>. Its output is a statistical estimate, <strong>not a medical diagnosis</strong>,
+    and it cannot replace an examination by a qualified healthcare professional. It never recommends medicines or treatments.</p>
+  <p class="mb-0">A high percentage means the model is fairly sure <em>within the limited data it learned from</em>. It does not mean you have that condition.</p>
+</section>
+
+<section class="mt-5">
+  <h2 class="h3 mb-4">How it works</h2>
+  <ol class="steps">
+    <li><h3 class="h5">Select your symptoms</h3><p>Search a list of symptoms and tick the ones that apply. Age and gender are optional if the model uses them.</p></li>
+    <li><h3 class="h5">The model compares patterns</h3><p>Your selection is turned into numbers and compared with thousands of example records the model was trained on.</p></li>
+    <li><h3 class="h5">Review an estimate, not a verdict</h3><p>You see the closest match, other possibilities, which symptoms mattered most, and general information about the condition.</p></li>
+  </ol>
+</section>
+
+<section class="mt-5 row g-4">
+  <div class="col-md-6">
+    <h2 class="h5">What it can do</h2>
+    <p>Show how a classifier turns symptom data into ranked probabilities, and how such a system is trained, evaluated and deployed.</p>
+  </div>
+  <div class="col-md-6">
+    <h2 class="h5">What it cannot do</h2>
+    <p>Diagnose, rule out serious illness, account for your medical history, or know about conditions outside its short list. Many illnesses share the same symptoms.</p>
+  </div>
+</section>
+{% endblock %}

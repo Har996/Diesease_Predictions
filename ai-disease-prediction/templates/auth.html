@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Create account' if mode == 'register' else 'Sign in' }} · AI Disease Prediction System{% endblock %}
+{% block content %}
+<div class="auth-box">
+  <h1 class="h2">{{ 'Create an account' if mode == 'register' else 'Sign in' }}</h1>
+  <p class="text-muted-ink">{{ 'An account keeps your prediction history across devices. Do not reuse a password from another site.' if mode == 'register' else 'Sign in to see your saved predictions.' }}</p>
+  <form method="post" novalidate>
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <div class="mb-3">
+      <label class="form-label" for="username">Username</label>
+      <input class="form-control" id="username" name="username" required minlength="3" maxlength="32" autocomplete="username" value="{{ request.form.get('username','') }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password">Password{% if mode == 'register' %} <span class="text-muted-ink small">(8 characters or more)</span>{% endif %}</label>
+      <input class="form-control" type="password" id="password" name="password" required minlength="8" autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}">
+    </div>
+    {% if mode == 'register' %}
+    <div class="mb-3">
+      <label class="form-label" for="confirm">Confirm password</label>
+      <input class="form-control" type="password" id="confirm" name="confirm" required minlength="8" autocomplete="new-password">
+    </div>
+    {% endif %}
+    <button class="btn btn-primary w-100" type="submit">{{ 'Create account' if mode == 'register' else 'Sign in' }}</button>
+  </form>
+  <p class="mt-3 mb-0 small">
+    {% if mode == 'register' %}Already registered? <a href="{{ url_for('login') }}">Sign in</a>{% else %}No account yet? <a href="{{ url_for('register') }}">Create one</a>{% endif %}
+  </p>
+</div>
+{% endblock %}

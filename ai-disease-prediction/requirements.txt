@@ -1,0 +1,13 @@
+# Core
+flask>=3.0
+pandas>=2.1
+numpy>=1.26
+scikit-learn>=1.4
+joblib>=1.3
+# Evaluation plots
+matplotlib>=3.8
+seaborn>=0.13
+# Production server (used by Docker; not available on Windows - use `flask run` there)
+gunicorn>=21.2; platform_system != "Windows"
+# Tests (tests also run with the standard library: python -m unittest)
+pytest>=8.0

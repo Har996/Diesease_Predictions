@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} · AI Disease Prediction System{% endblock %}
+{% block content %}
+<div class="empty">
+  <h1 class="h2">{{ code }} · {{ name }}</h1>
+  <p>{{ message }}</p>
+  <a class="btn btn-primary" href="{{ url_for('index') }}">Back to home</a>
+</div>
+{% endblock %}

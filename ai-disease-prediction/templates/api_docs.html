@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}API · AI Disease Prediction System{% endblock %}
+{% block content %}
+<h1 class="h2">REST API</h1>
+<p class="text-muted-ink">JSON over HTTP. The machine-readable OpenAPI 3 description is at <a href="{{ url_for('openapi') }}">/api/openapi.json</a>. Predictions are educational estimates, not diagnoses.</p>
+
+<h2 class="h5 mt-4"><code>POST /predict</code></h2>
+<p>Predict from symptoms. Send <code>Content-Type: application/json</code>. <code>age</code> and <code>gender</code> are optional and only used if the model was trained with them. Add <code>"save": false</code> to skip saving to history.</p>
+<pre class="code-block">curl -X POST {{ request.url_root }}predict \
+  -H "Content-Type: application/json" \
+  -d '{"symptoms": ["fever", "cough", "fatigue"], "age": 34, "gender": "female"}'</pre>
+<pre class="code-block">{
+  "prediction": "Example Disease",
+  "confidence": 0.82,
+  "top_predictions": [{"disease": "Example Disease", "probability": 0.82}],
+  "selected_symptoms": ["fever", "cough", "fatigue"],
+  "explanation": [{"symptom": "fever", "label": "Fever", "effect": 0.31}],
+  "low_confidence": false,
+  "model_version": "20260101-120000",
+  "trained_on_synthetic_data": true,
+  "disclaimer": "...",
+  "id": 12, "result_url": "/result/12"
+}</pre>
+<p>Errors return <code>{"error": "message"}</code> with status <code>400</code> (invalid input), <code>413</code> (body too large) or <code>503</code> (model not trained).</p>
+
+<h2 class="h5 mt-4"><code>GET /api/symptoms</code></h2>
+<p>List valid symptom identifiers and labels.</p>
+<h2 class="h5 mt-4"><code>GET /api/model</code></h2>
+<p>Model name, version, training time, number of diseases and symptoms.</p>
+<h2 class="h5 mt-4"><code>GET /health</code></h2>
+<p>Returns <code>{"status": "ok", "model_loaded": true|false}</code>.</p>
+{% endblock %}

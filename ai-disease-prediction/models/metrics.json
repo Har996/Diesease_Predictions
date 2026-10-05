@@ -1,0 +1,1029 @@
+{
+  "version": "20261003-065400",
+  "trained_at": "2026-10-03T06:54:00+00:00",
+  "sklearn_version": "1.8.0",
+  "random_state": 42,
+  "dataset": {
+    "rows_raw": 4000,
+    "rows_missing_target": 0,
+    "missing_values": {
+      "symptoms": 0,
+      "age": 121,
+      "gender": 72
+    },
+    "dropped_empty_symptom_columns": [],
+    "duplicates_removed": 88,
+    "dropped_rare_classes": {},
+    "rows": 3912,
+    "n_classes": 10,
+    "n_symptoms": 34,
+    "class_counts": {
+      "Common Cold": 874,
+      "Influenza": 583,
+      "Allergic Rhinitis": 472,
+      "Migraine": 462,
+      "Gastroenteritis": 417,
+      "Urinary Tract Infection": 342,
+      "Pneumonia": 286,
+      "Dengue": 191,
+      "Typhoid": 160,
+      "Asthma": 125
+    },
+    "imbalance_ratio": 6.992,
+    "path": "disease_symptoms.csv",
+    "uses_age": true,
+    "uses_gender": true,
+    "is_synthetic": true
+  },
+  "split": {
+    "train": 2503,
+    "validation": 626,
+    "test": 783,
+    "scheme": "stratified, seed=42, test=20% of all rows, validation=20% of the remainder"
+  },
+  "candidates": [
+    {
+      "name": "Logistic Regression",
+      "fit_seconds": 0.05,
+      "val": {
+        "accuracy": 0.9408945686900958,
+        "balanced_accuracy": 0.9439914027703692,
+        "precision_macro": 0.9440564191655746,
+        "recall_macro": 0.9439914027703692,
+        "f1_macro": 0.9436844958472446,
+        "precision_weighted": 0.941662416602766,
+        "recall_weighted": 0.9408945686900958,
+        "f1_weighted": 0.9410188537663411,
+        "per_class": {
+          "Allergic Rhinitis": {
+            "precision": 0.8481012658227848,
+            "recall": 0.8933333333333333,
+            "f1": 0.8701298701298701,
+            "support": 75
+          },
+          "Asthma": {
+            "precision": 0.95,
+            "recall": 0.95,
+            "f1": 0.95,
+            "support": 20
+          },
+          "Common Cold": {
+            "precision": 0.9136690647482014,
+            "recall": 0.9071428571428571,
+            "f1": 0.910394265232975,
+            "support": 140
+          },
+          "Dengue": {
+            "precision": 0.96875,
+            "recall": 1.0,
+            "f1": 0.9841269841269841,
+            "support": 31
+          },
+          "Gastroenteritis": {
+            "precision": 0.9701492537313433,
+            "recall": 0.9701492537313433,
+            "f1": 0.9701492537313433,
+            "support": 67
+          },
+          "Influenza": {
+            "precision": 0.9887640449438202,
+            "recall": 0.946236559139785,
+            "f1": 0.967032967032967,
+            "support": 93
+          },
+          "Migraine": {
+            "precision": 0.9863013698630136,
+            "recall": 0.972972972972973,
+            "f1": 0.9795918367346939,
+            "support": 74
+          },
+          "Pneumonia": {
+            "precision": 0.9375,
+            "recall": 0.9782608695652174,
+            "f1": 0.9574468085106383,
+            "support": 46
+          },
+          "Typhoid": {
+            "precision": 0.9130434782608695,
+            "recall": 0.84,
+            "f1": 0.875,
+            "support": 25
+          },
+          "Urinary Tract Infection": {
+            "precision": 0.9642857142857143,
+            "recall": 0.9818181818181818,
+            "f1": 0.972972972972973,
+            "support": 55
+          }
+        },
+        "labels": [
+          "Allergic Rhinitis",
+          "Asthma",
+          "Common Cold",
+          "Dengue",
+          "Gastroenteritis",
+          "Influenza",
+          "Migraine",
+          "Pneumonia",
+          "Typhoid",
+          "Urinary Tract Infection"
+        ],
+        "confusion_matrix": [
+          [
+            67,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            19,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            11,
+            0,
+            127,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            31,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            65,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            88,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            72,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            21,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            54
+          ]
+        ]
+      },
+      "cv_folds": 5,
+      "cv_f1_macro_mean": 0.9529302421012289,
+      "cv_f1_macro_std": 0.004825137600731358
+    },
+    {
+      "name": "Random Forest",
+      "fit_seconds": 1.13,
+      "val": {
+        "accuracy": 0.9376996805111821,
+        "balanced_accuracy": 0.9280760399339665,
+        "precision_macro": 0.9559486544222902,
+        "recall_macro": 0.9280760399339665,
+        "f1_macro": 0.9404588665346436,
+        "precision_weighted": 0.9393537680001817,
+        "recall_weighted": 0.9376996805111821,
+        "f1_weighted": 0.9372406969159366,
+        "per_class": {
+          "Allergic Rhinitis": {
+            "precision": 0.9090909090909091,
+            "recall": 0.8,
+            "f1": 0.851063829787234,
+            "support": 75
+          },
+          "Asthma": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "support": 20
+          },
+          "Common Cold": {
+            "precision": 0.8636363636363636,
+            "recall": 0.95,
+            "f1": 0.9047619047619048,
+            "support": 140
+          },
+          "Dengue": {
+            "precision": 1.0,
+            "recall": 0.967741935483871,
+            "f1": 0.9836065573770492,
+            "support": 31
+          },
+          "Gastroenteritis": {
+            "precision": 0.9565217391304348,
+            "recall": 0.9850746268656716,
+            "f1": 0.9705882352941176,
+            "support": 67
+          },
+          "Influenza": {
+            "precision": 0.9574468085106383,
+            "recall": 0.967741935483871,
+            "f1": 0.9625668449197861,
+            "support": 93
+          },
+          "Migraine": {
+            "precision": 1.0,
+            "recall": 0.9864864864864865,
+            "f1": 0.9931972789115646,
+            "support": 74
+          },
+          "Pneumonia": {
+            "precision": 0.9574468085106383,
+            "recall": 0.9782608695652174,
+            "f1": 0.967741935483871,
+            "support": 46
+          },
+          "Typhoid": {
+            "precision": 0.9523809523809523,
+            "recall": 0.8,
+            "f1": 0.8695652173913043,
+            "support": 25
+          },
+          "Urinary Tract Infection": {
+            "precision": 0.9629629629629629,
+            "recall": 0.9454545454545454,
+            "f1": 0.9541284403669725,
+            "support": 55
+          }
+        },
+        "labels": [
+          "Allergic Rhinitis",
+          "Asthma",
+          "Common Cold",
+          "Dengue",
+          "Gastroenteritis",
+          "Influenza",
+          "Migraine",
+          "Pneumonia",
+          "Typhoid",
+          "Urinary Tract Infection"
+        ],
+        "confusion_matrix": [
+          [
+            60,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            18,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            133,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            30,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            66,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            90,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            73,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            3,
+            0,
+            0,
+            1,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            52
+          ]
+        ]
+      },
+      "cv_folds": 5,
+      "cv_f1_macro_mean": 0.9506133846988986,
+      "cv_f1_macro_std": 0.0027933972226661424
+    },
+    {
+      "name": "SVM (RBF)",
+      "fit_seconds": 0.59,
+      "val": {
+        "accuracy": 0.9472843450479234,
+        "balanced_accuracy": 0.9451296599553283,
+        "precision_macro": 0.962556746722308,
+        "recall_macro": 0.9451296599553283,
+        "f1_macro": 0.952876998147404,
+        "precision_weighted": 0.9481322235955378,
+        "recall_weighted": 0.9472843450479234,
+        "f1_weighted": 0.9471145570471738,
+        "per_class": {
+          "Allergic Rhinitis": {
+            "precision": 0.8873239436619719,
+            "recall": 0.84,
+            "f1": 0.863013698630137,
+            "support": 75
+          },
+          "Asthma": {
+            "precision": 1.0,
+            "recall": 0.95,
+            "f1": 0.9743589743589743,
+            "support": 20
+          },
+          "Common Cold": {
+            "precision": 0.8918918918918919,
+            "recall": 0.9428571428571428,
+            "f1": 0.9166666666666666,
+            "support": 140
+          },
+          "Dengue": {
+            "precision": 0.96875,
+            "recall": 1.0,
+            "f1": 0.9841269841269841,
+            "support": 31
+          },
+          "Gastroenteritis": {
+            "precision": 0.9705882352941176,
+            "recall": 0.9850746268656716,
+            "f1": 0.9777777777777777,
+            "support": 67
+          },
+          "Influenza": {
+            "precision": 0.9680851063829787,
+            "recall": 0.978494623655914,
+            "f1": 0.9732620320855615,
+            "support": 93
+          },
+          "Migraine": {
+            "precision": 1.0,
+            "recall": 0.972972972972973,
+            "f1": 0.9863013698630136,
+            "support": 74
+          },
+          "Pneumonia": {
+            "precision": 0.9574468085106383,
+            "recall": 0.9782608695652174,
+            "f1": 0.967741935483871,
+            "support": 46
+          },
+          "Typhoid": {
+            "precision": 1.0,
+            "recall": 0.84,
+            "f1": 0.9130434782608695,
+            "support": 25
+          },
+          "Urinary Tract Infection": {
+            "precision": 0.9814814814814815,
+            "recall": 0.9636363636363636,
+            "f1": 0.9724770642201835,
+            "support": 55
+          }
+        },
+        "labels": [
+          "Allergic Rhinitis",
+          "Asthma",
+          "Common Cold",
+          "Dengue",
+          "Gastroenteritis",
+          "Influenza",
+          "Migraine",
+          "Pneumonia",
+          "Typhoid",
+          "Urinary Tract Infection"
+        ],
+        "confusion_matrix": [
+          [
+            63,
+            0,
+            12,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            19,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            0,
+            132,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            31,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            66,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            91,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            72,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            45,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            21,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            53
+          ]
+        ]
+      },
+      "cv_folds": 5,
+      "cv_f1_macro_mean": 0.9586295317517584,
+      "cv_f1_macro_std": 0.006540174054467935
+    }
+  ],
+  "selected_model": "SVM (RBF)",
+  "selection_criterion": "highest validation macro-F1 (accuracy breaks ties)",
+  "test": {
+    "accuracy": 0.9629629629629629,
+    "balanced_accuracy": 0.9663378305631589,
+    "precision_macro": 0.962499402253108,
+    "recall_macro": 0.9663378305631589,
+    "f1_macro": 0.9641487498416668,
+    "precision_weighted": 0.9638029071689056,
+    "recall_weighted": 0.9629629629629629,
+    "f1_weighted": 0.9631465084101437,
+    "per_class": {
+      "Allergic Rhinitis": {
+        "precision": 0.9,
+        "recall": 0.9473684210526315,
+        "f1": 0.9230769230769231,
+        "support": 95
+      },
+      "Asthma": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 25
+      },
+      "Common Cold": {
+        "precision": 0.9644970414201184,
+        "recall": 0.9314285714285714,
+        "f1": 0.9476744186046512,
+        "support": 175
+      },
+      "Dengue": {
+        "precision": 1.0,
+        "recall": 0.9473684210526315,
+        "f1": 0.972972972972973,
+        "support": 38
+      },
+      "Gastroenteritis": {
+        "precision": 0.9529411764705882,
+        "recall": 0.9759036144578314,
+        "f1": 0.9642857142857143,
+        "support": 83
+      },
+      "Influenza": {
+        "precision": 0.9826086956521739,
+        "recall": 0.9658119658119658,
+        "f1": 0.9741379310344828,
+        "support": 117
+      },
+      "Migraine": {
+        "precision": 0.989247311827957,
+        "recall": 0.989247311827957,
+        "f1": 0.989247311827957,
+        "support": 93
+      },
+      "Pneumonia": {
+        "precision": 0.9827586206896551,
+        "recall": 1.0,
+        "f1": 0.991304347826087,
+        "support": 57
+      },
+      "Typhoid": {
+        "precision": 0.8529411764705882,
+        "recall": 0.90625,
+        "f1": 0.8787878787878788,
+        "support": 32
+      },
+      "Urinary Tract Infection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 68
+      }
+    },
+    "labels": [
+      "Allergic Rhinitis",
+      "Asthma",
+      "Common Cold",
+      "Dengue",
+      "Gastroenteritis",
+      "Influenza",
+      "Migraine",
+      "Pneumonia",
+      "Typhoid",
+      "Urinary Tract Infection"
+    ],
+    "confusion_matrix": [
+      [
+        90,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        10,
+        0,
+        163,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        36,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        81,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        1,
+        113,
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        92,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        57,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0,
+        29,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        68
+      ]
+    ]
+  },
+  "feature_importance": {
+    "permutation": [
+      {
+        "feature": "itchy_eyes",
+        "importance": 0.049285988442207815,
+        "std": 0.002961777599269852
+      },
+      {
+        "feature": "muscle_pain",
+        "importance": 0.02936309921346032,
+        "std": 0.004173190885954718
+      },
+      {
+        "feature": "severe_headache",
+        "importance": 0.02548148232528129,
+        "std": 0.0018647071005649073
+      },
+      {
+        "feature": "sore_throat",
+        "importance": 0.023354658214926327,
+        "std": 0.0039062395322199345
+      },
+      {
+        "feature": "high_fever",
+        "importance": 0.020698698356640798,
+        "std": 0.004397366857073149
+      },
+      {
+        "feature": "cough",
+        "importance": 0.0150459703323218,
+        "std": 0.005246295323125122
+      },
+      {
+        "feature": "headache",
+        "importance": 0.014218287180942823,
+        "std": 0.0025677488480686174
+      },
+      {
+        "feature": "burning_urination",
+        "importance": 0.01359358316231718,
+        "std": 0.000982504255654418
+      },
+      {
+        "feature": "frequent_urination",
+        "importance": 0.011186779231899124,
+        "std": 0.001443591388034534
+      },
+      {
+        "feature": "nausea",
+        "importance": 0.01072603613290155,
+        "std": 0.0025774106860851696
+      },
+      {
+        "feature": "runny_nose",
+        "importance": 0.009578734012317059,
+        "std": 0.0033929837796962247
+      },
+      {
+        "feature": "diarrhea",
+        "importance": 0.00947532597536065,
+        "std": 0.0015055757975396223
+      },
+      {
+        "feature": "nasal_congestion",
+        "importance": 0.008947840358213898,
+        "std": 0.0021094003575974647
+      },
+      {
+        "feature": "loss_of_appetite",
+        "importance": 0.008901446295886161,
+        "std": 0.0021243017763365943
+      },
+      {
+        "feature": "age",
+        "importance": 0.00865999663784034,
+        "std": 0.006892277940790243
+      },
+      {
+        "feature": "shortness_of_breath",
+        "importance": 0.008631270530563295,
+        "std": 0.0016094515266051697
+      },
+      {
+        "feature": "fever",
+        "importance": 0.008586288729123304,
+        "std": 0.0021659949291480945
+      },
+      {
+        "feature": "vomiting",
+        "importance": 0.008487241895312757,
+        "std": 0.0030859001430780715
+      },
+      {
+        "feature": "sneezing",
+        "importance": 0.007714500570426863,
+        "std": 0.0019750881876621656
+      },
+      {
+        "feature": "lower_abdominal_pain",
+        "importance": 0.0071784607188923434,
+        "std": 0.0011444681744700454
+      },
+      {
+        "feature": "light_sensitivity",
+        "importance": 0.006097200052889695,
+        "std": 0.002126276626275735
+      },
+      {
+        "feature": "abdominal_pain",
+        "importance": 0.0054433131014364425,
+        "std": 0.0016669043996045574
+      },
+      {
+        "feature": "joint_pain",
+        "importance": 0.005212806536390136,
+        "std": 0.003242110580972165
+      },
+      {
+        "feature": "pain_behind_eyes",
+        "importance": 0.00414373892615052,
+        "std": 0.0024799407312175573
+      },
+      {
+        "feature": "fatigue",
+        "importance": 0.004052984196464937,
+        "std": 0.0022799030704307864
+      }
+    ],
+    "native": null
+  },
+  "notes": [
+    "The dataset is SYNTHETIC demo data. These metrics say nothing about real-world accuracy.",
+    "Metrics come from a single stratified hold-out split; they carry sampling uncertainty.",
+    "High accuracy on a dataset does not make a model medically reliable.",
+    "Classes are imbalanced (7.0:1); class weights were used and macro-averaged metrics are reported."
+  ]
+}

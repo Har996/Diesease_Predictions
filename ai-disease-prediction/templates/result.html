@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Result · AI Disease Prediction System{% endblock %}
+{% block content %}
+<div class="notice notice-strong" role="note">
+  <strong>This is not a diagnosis.</strong> It is a statistical estimate from an educational model. Please consult a qualified healthcare professional about your symptoms.
+</div>
+
+<section class="result-top mt-4">
+  <p class="text-muted-ink mb-1">Closest match in the model's training data</p>
+  <h1 class="display-name">{{ r.prediction }}</h1>
+
+  <div class="meter-wrap">
+    <div class="meter" role="img" aria-label="Model estimate {{ (r.confidence*100)|round(1) }} percent">
+      <div class="meter-fill" style="width: {{ (r.confidence*100)|round(1) }}%"></div>
+    </div>
+    <div class="meter-label"><strong>{{ (r.confidence*100)|round(1) }}%</strong> model estimate</div>
+  </div>
+  <p class="small text-muted-ink mt-2">This number is the model's own probability estimate. It is <em>not</em> the chance that you have this condition.</p>
+
+  {% if r.confidence < 0.4 %}
+  <div class="alert alert-warning mt-3" role="alert">The model is not confident here: several conditions look similar for these symptoms. Treat this result with extra caution.</div>
+  {% endif %}
+  {% if r.synthetic %}
+  <div class="alert alert-secondary mt-3" role="note">This result comes from a model trained on synthetic demo data.</div>
+  {% endif %}
+</section>
+
+<div class="row g-5 mt-1">
+  <div class="col-lg-6">
+    <h2 class="h5">Other possibilities</h2>
+    <ul class="bar-list">
+      {% for t in r.top_predictions %}
+      <li>
+        <div class="split"><span>{{ t.disease }}</span><span>{{ (t.probability*100)|round(1) }}%</span></div>
+        <div class="meter meter-sm"><div class="meter-fill {{ 'meter-alt' if not loop.first }}" style="width: {{ (t.probability*100)|round(1) }}%"></div></div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="col-lg-6">
+    <h2 class="h5">What you entered</h2>
+    <div class="chips mb-3">
+      {% for s in r.symptoms %}<span class="chip">{{ humanize(s) }}</span>{% endfor %}
+    </div>
+    {% if r.age is not none or r.gender %}
+    <p class="small text-muted-ink">
+      {% if r.age is not none %}Age: {{ r.age|int }}{% endif %}{% if r.age is not none and r.gender %} · {% endif %}{% if r.gender %}Gender: {{ r.gender|capitalize }}{% endif %}
+    </p>
+    {% endif %}
+
+    <h2 class="h5 mt-4">Which symptoms shaped the estimate</h2>
+    <p class="small text-muted-ink">Change in the estimate for <em>{{ r.prediction }}</em> if that one symptom were removed.</p>
+    <ul class="contrib">
+      {% set top_effect = (r.explanation|map(attribute='effect')|map('abs')|max) if r.explanation else 1 %}
+      {% for e in r.explanation %}
+      <li>
+        <span class="contrib-name">{{ e.label }}</span>
+        <span class="contrib-bar" aria-hidden="true"><i class="{{ 'neg' if e.effect < 0 }}" style="width: {{ ((e.effect|abs / (top_effect or 1)) * 100)|round(0) }}%"></i></span>
+        <span class="contrib-val">{{ '%+.1f'|format(e.effect*100) }} pts</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="small text-muted-ink mb-0">Positive: the symptom pushes the estimate toward this condition. Negative: away from it. This shows model behaviour, not medical cause.</p>
+  </div>
+</div>
+
+<section class="mt-5">
+  <h2 class="h4">About {{ r.prediction }} <span class="small text-muted-ink fw-normal">(general information)</span></h2>
+  <p>{{ info.summary }}</p>
+  <div class="row g-4">
+    {% if info.typical_features %}
+    <div class="col-md-6"><h3 class="h6">Commonly associated features</h3><ul>{% for f in info.typical_features %}<li>{{ f }}</li>{% endfor %}</ul></div>
+    {% endif %}
+    <div class="col-md-6"><h3 class="h6">Seek medical care promptly if</h3><ul>{% for f in info.seek_care %}<li>{{ f }}</li>{% endfor %}</ul></div>
+  </div>
+  {% if info.general_notes %}<ul class="small text-muted-ink">{% for n in info.general_notes %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}
+</section>
+
+<section class="notice mt-5">
+  <h2 class="h5">Next step: talk to a healthcare professional</h2>
+  <p class="mb-0">Only a clinician can examine you, consider your history and order tests. This tool does not suggest medicines or treatment. If symptoms are severe, sudden or worsening, seek urgent medical care.</p>
+</section>
+
+<div class="d-flex flex-wrap gap-2 mt-4 no-print">
+  <a class="btn btn-primary" href="{{ url_for('predict_page') }}">New prediction</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('download_report', pred_id=r.id) }}">Download report</a>
+  <button type="button" class="btn btn-outline-primary" onclick="window.print()">Print</button>
+  <a class="btn btn-link" href="{{ url_for('history') }}">View history</a>
+</div>
+<p class="small text-muted-ink mt-3">Model: version {{ r.model_version }} · {{ r.created_at }} UTC</p>
+{% endblock %}
